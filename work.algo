@@ -1,21 +1,19 @@
-FUNCTION palindrome(word:STRING;start,end:INTEGER) : BOOLEAN
+FUNCTION palindrome(word: STRING; start, end: INTEGER) : BOOLEAN
 VAR
- 
-    start =0
- end = word.length-1
-BEGIN
-WHILE (start <= end) DO
- IF (word[start] == word[end]) THEN
-      
-   RETURN TRUE
- ELSE
-    RETURN FALSE
- ELSE 
-   palindrome(word,start+1,end-1)
- END_IF 
- 
- 
+    result: BOOLEAN
 
+BEGIN
+    IF start >= end THEN
+        RETURN TRUE  // Base case: if start index is greater than or equal to end index, the string is a palindrome
+    END_IF
+
+    IF word[start] = word[end] THEN
+        result := palindrome(word, start + 1, end - 1)  // Recur with updated start and end indices
+        RETURN result
+    ELSE
+        RETURN FALSE  // If characters at start and end indices don't match, it's not a palindrome
+    END_IF
+END
 
 
 
